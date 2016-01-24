@@ -9,7 +9,7 @@
 import Foundation
 
 class Stack {
-    var items = [Any]()
+    private var items = [Any]()
     func push(item:Any) {
         items.append(item)
     }

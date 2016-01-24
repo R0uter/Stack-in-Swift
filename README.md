@@ -13,4 +13,4 @@ Anyway, there is two version of Stack:
 
 ###Demo
 
-See `see main.swift`.
+See `main.swift`.

@@ -9,7 +9,7 @@
 import Foundation
 
 struct StackG<Element> {
-    var items = [Element]()
+    private var items = [Element]()
     mutating func push(item:Element) {
         items.append(item)
     }
