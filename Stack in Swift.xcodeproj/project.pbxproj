@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		E98209761C54CACD0060DDCB /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98209751C54CACD0060DDCB /* main.swift */; };
+		E982097E1C54CC1F0060DDCB /* StackG.swift in Sources */ = {isa = PBXBuildFile; fileRef = E982097D1C54CC1F0060DDCB /* StackG.swift */; };
+		E98209801C54CC2D0060DDCB /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E982097F1C54CC2D0060DDCB /* Stack.swift */; };
+		E98209821C54D12B0060DDCB /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = E98209811C54D12B0060DDCB /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +28,9 @@
 /* Begin PBXFileReference section */
 		E98209721C54CACD0060DDCB /* Stack in Swift */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Stack in Swift"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E98209751C54CACD0060DDCB /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		E982097D1C54CC1F0060DDCB /* StackG.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackG.swift; sourceTree = "<group>"; };
+		E982097F1C54CC2D0060DDCB /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
+		E98209811C54D12B0060DDCB /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +47,7 @@
 		E98209691C54CACD0060DDCB = {
 			isa = PBXGroup;
 			children = (
+				E98209811C54D12B0060DDCB /* README.md */,
 				E98209741C54CACD0060DDCB /* Stack in Swift */,
 				E98209731C54CACD0060DDCB /* Products */,
 			);
@@ -58,6 +65,8 @@
 			isa = PBXGroup;
 			children = (
 				E98209751C54CACD0060DDCB /* main.swift */,
+				E982097D1C54CC1F0060DDCB /* StackG.swift */,
+				E982097F1C54CC2D0060DDCB /* Stack.swift */,
 			);
 			path = "Stack in Swift";
 			sourceTree = "<group>";
@@ -119,6 +128,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E982097E1C54CC1F0060DDCB /* StackG.swift in Sources */,
+				E98209801C54CC2D0060DDCB /* Stack.swift in Sources */,
+				E98209821C54D12B0060DDCB /* README.md in Sources */,
 				E98209761C54CACD0060DDCB /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -239,6 +251,7 @@
 				E982097B1C54CACD0060DDCB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
