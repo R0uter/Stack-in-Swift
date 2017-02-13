@@ -9,9 +9,9 @@
 import Foundation
 
 class Stack {
-    private var items = [Any]()
-    func push(item:Any) {
-        items.append(item)
+    fileprivate var items:[Any] = []
+    func push(_ newElement:Any) {
+        items.append(newElement)
     }
     func pop() ->Any? {
         return items.removeLast()
@@ -21,5 +21,14 @@ class Stack {
     }
     func peek() ->Any? {
         return items.last
+    }
+    var count:Int {
+        return items.count
+    }
+}
+extension Stack:Sequence {
+    typealias Iterator = IndexingIterator<Array<Any>>
+    func makeIterator() -> Stack.Iterator {
+        return items.makeIterator()
     }
 }

@@ -9,9 +9,9 @@
 import Foundation
 
 struct StackG<Element> {
-    private var items = [Element]()
-    mutating func push(item:Element) {
-        items.append(item)
+    fileprivate var items:[Element] = []
+    mutating func push(_ newElement:Element) {
+        items.append(newElement)
     }
     mutating func pop() ->Element? {
         return items.removeLast()
@@ -21,5 +21,14 @@ struct StackG<Element> {
     }
     func peek() ->Element? {
         return items.last
+    }
+    var count:Int {
+        return items.count
+    }
+}
+extension StackG:Sequence {
+    typealias Iterator = IndexingIterator<Array<Element>>
+    func makeIterator() -> StackG.Iterator {
+        return items.makeIterator()
     }
 }
