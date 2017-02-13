@@ -31,11 +31,31 @@ print(GVersionStack.peek()!.classNumber)
 stack.push(1)
 stack.push(a)
 stack.push("abcd")
-while(!stack.empty()) {
+for item in stack {
     let tmp = stack.peek() as? SomeClass
     if let a = tmp {
         print(tmp!.classNumber)
     }
-        stack.pop()
-    
 }
+print(stack.count)
+_ = stack.pop()
+print(stack.count)
+print("=========")
+var pStack:PriorityStuck<Int> = PriorityStuck(Length: 5)
+pStack.push(1)
+pStack.push(5)
+pStack.push(2)
+pStack.push(8)
+pStack.push(100)
+pStack.push(999999)
+pStack.push(0)
+print(pStack.maxLength)
+print("---")
+for item in pStack {
+    print(item)
+}
+let list:[Int] = pStack.map{return $0}
+print(list)
+
+
+    
