@@ -1,15 +1,18 @@
 ## Stack class for Swift
-I found that swift does not had Stack in stdlib(?)
-
+I found that swift does not had Stack in Foundation
 So I try to implement that for my self.
 
 ###Use
 
-Anyway, there is two version of Stack: 
+There is three version of Stack: 
 
 `StackG` is Generic version Stack.It uses struct;
 
 `Stack` is class version Stack,It seems more like common Stack,which needs to check the type of value before you use it.
+
+`PriorityStuct` is struct version Stact that auto sort elements as DESC
+
+They are all implement with `Sequence`, so you can use `.map`, `.flat`, `for-in` and so on. :)
 
 ###Demo
 
