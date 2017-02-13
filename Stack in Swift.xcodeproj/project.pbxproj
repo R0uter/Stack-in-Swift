@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E96076DC1E52136E000A83FF /* PriorityStuck.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96076DB1E52136E000A83FF /* PriorityStuck.swift */; };
+		E96076DC1E52136E000A83FF /* PriorityStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96076DB1E52136E000A83FF /* PriorityStack.swift */; };
 		E98209761C54CACD0060DDCB /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98209751C54CACD0060DDCB /* main.swift */; };
 		E982097E1C54CC1F0060DDCB /* StackG.swift in Sources */ = {isa = PBXBuildFile; fileRef = E982097D1C54CC1F0060DDCB /* StackG.swift */; };
 		E98209801C54CC2D0060DDCB /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E982097F1C54CC2D0060DDCB /* Stack.swift */; };
@@ -26,7 +26,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		E96076DB1E52136E000A83FF /* PriorityStuck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriorityStuck.swift; sourceTree = "<group>"; };
+		E96076DB1E52136E000A83FF /* PriorityStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriorityStack.swift; sourceTree = "<group>"; };
 		E98209721C54CACD0060DDCB /* Stack in Swift */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Stack in Swift"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E98209751C54CACD0060DDCB /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		E982097D1C54CC1F0060DDCB /* StackG.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackG.swift; sourceTree = "<group>"; };
@@ -68,7 +68,7 @@
 				E98209751C54CACD0060DDCB /* main.swift */,
 				E982097D1C54CC1F0060DDCB /* StackG.swift */,
 				E982097F1C54CC2D0060DDCB /* Stack.swift */,
-				E96076DB1E52136E000A83FF /* PriorityStuck.swift */,
+				E96076DB1E52136E000A83FF /* PriorityStack.swift */,
 			);
 			path = "Stack in Swift";
 			sourceTree = "<group>";
@@ -133,7 +133,7 @@
 			files = (
 				E982097E1C54CC1F0060DDCB /* StackG.swift in Sources */,
 				E98209801C54CC2D0060DDCB /* Stack.swift in Sources */,
-				E96076DC1E52136E000A83FF /* PriorityStuck.swift in Sources */,
+				E96076DC1E52136E000A83FF /* PriorityStack.swift in Sources */,
 				E98209761C54CACD0060DDCB /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

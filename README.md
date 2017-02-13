@@ -10,9 +10,9 @@ There is three version of Stack:
 
 `Stack` is class version Stack,It seems more like common Stack,which needs to check the type of value before you use it.
 
-`PriorityStuct` is struct version Stact that auto sort elements as DESC
+`PriorityStack` is struct version Stack that auto sort elements as DESC
 
-They are all implement with `Sequence`, so you can use `.map`, `.flat`, `for-in` and so on. :)
+They are all implemented with `Sequence`, so you can use `.map`, `.flat`, `for-in` and so on. :)
 
 ###Demo
 

@@ -1,5 +1,5 @@
 //
-//  PriorityStuck.swift
+//  PriorityStack.swift
 //  Stack in Swift
 //
 //  Created by R0uter on 2017/2/14.
@@ -9,7 +9,7 @@
 import Foundation
 //Element must comparable
 
-struct PriorityStuck<Element:Comparable> {
+struct PriorityStack<Element:Comparable> {
     fileprivate var items:[Element] = []
     let maxLength:Int
     
@@ -66,9 +66,9 @@ struct PriorityStuck<Element:Comparable> {
     
 }
 
-extension PriorityStuck:Sequence {
+extension PriorityStack:Sequence {
     typealias Iterator = IndexingIterator<Array<Element>>
-    func makeIterator() -> PriorityStuck.Iterator {
+    func makeIterator() -> PriorityStack.Iterator {
         return items.makeIterator()
     }
 }
