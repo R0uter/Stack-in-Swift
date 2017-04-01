@@ -2,7 +2,7 @@
 I found that swift does not had Stack in Foundation
 So I try to implement that for my self.
 
-###Use
+### Use
 
 There is three version of Stack: 
 
@@ -14,11 +14,11 @@ There is three version of Stack:
 
 They are all implemented with `Sequence`, so you can use `.map`, `.flat`, `for-in` and so on. :)
 
-###Demo
+### Demo
 
 See `main.swift`.
 
-##MIT License (MIT)
+## MIT License (MIT)
 
 The MIT License (MIT)
 
