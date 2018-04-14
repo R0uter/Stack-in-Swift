@@ -26,7 +26,7 @@ struct PriorityStack<Element:Comparable> {
             while middleIndex >= 0 {
                 
                 if newElement > items[middleIndex] {
-                    if middleIndex == 0 {items.insert(newElement, at: 0)}
+                    if middleIndex == 0 {items.insert(newElement, at: 0);break}
                     middleIndex -= 1
                     continue
                 }
@@ -38,7 +38,7 @@ struct PriorityStack<Element:Comparable> {
             while middleIndex < count {
                 
                 if newElement < items[middleIndex] {
-                    if middleIndex == count - 1 {items.append(newElement)}
+                    if middleIndex == count - 1 {items.append(newElement);break}
                     middleIndex += 1
                     continue
                 }
