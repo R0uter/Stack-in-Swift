@@ -18,7 +18,7 @@ for _ in 0...100000 {
 }
 print(Date().timeIntervalSince(date)*1000,"ms")
 
-var p = PriorityStack<Int>(Length: 50)
+var p = PriorityStack_LinkedListBackend<Int>(Length: 50)
 
 date = Date()
 for _ in 0...100000 {

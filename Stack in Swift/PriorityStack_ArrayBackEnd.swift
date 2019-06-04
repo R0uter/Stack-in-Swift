@@ -9,19 +9,30 @@
 import Foundation
 //Element must comparable
 
-struct PriorityStack_ArrayBackEnd<Element:Comparable> {
+class PriorityStack_ArrayBackEnd<Element:Comparable> {
     fileprivate var items:[Element] = []
     let maxLength:Int
     
     init(Length length:Int) {
         maxLength = length
-        items.reserveCapacity(length)
+        items.reserveCapacity(length+5)
     }
-    mutating func push(_ newElement:Element) {
+    var count = 0
+    
+    func push(_ newElement:Element) {
+        
+        
         if maxLength == count && newElement < items.last! {
             return
         }
-        if items.isEmpty {items.append(newElement);return}
+        
+        if isEmpty {
+            items.append(newElement)
+            count += 1
+            return
+            
+        }
+        
         var middleIndex = Int(count/2)
         if newElement > items[middleIndex] {
             while middleIndex >= 0 {
@@ -47,22 +58,21 @@ struct PriorityStack_ArrayBackEnd<Element:Comparable> {
                 break
             }
         }
-        if count > maxLength {items.removeLast()}
+        count += 1
+        if count > maxLength {items.removeLast();count -= 1}
         
     }
     
-    mutating func pop()->Element? {
+    func pop()->Element? {
         guard count > 0 else {return nil}
+        count -= 1
         return items.removeFirst()
     }
-    func empty() -> Bool {
-        return items.isEmpty
+    var isEmpty:Bool {
+        return count == 0
     }
     func peek() ->Element? {
-        return items.last
-    }
-    var count:Int {
-        return items.count
+        return items.first
     }
     
 }

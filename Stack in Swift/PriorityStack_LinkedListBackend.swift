@@ -17,7 +17,7 @@ fileprivate class LinkedListNode<T> {
     }
 }
 
-class PriorityStack<Element:Comparable> {
+class PriorityStack_LinkedListBackend<Element:Comparable> {
     fileprivate typealias Node = LinkedListNode<Element>
     
     let maxLength:Int
@@ -34,16 +34,18 @@ class PriorityStack<Element:Comparable> {
     var middleBanlance = 0 // left - right +
     
     func push(_ newElement:Element) {
+        
+        
+        if maxLength == count && newElement < endNode!.value {
+            return
+        }
+        
         guard !isEmpty else {
             let newNode = Node(value: newElement)
             headNode = newNode
             middleNode = newNode
             endNode = newNode
             count = 1
-            return
-        }
-        
-        if maxLength == count && newElement < endNode!.value {
             return
         }
         
@@ -81,11 +83,11 @@ class PriorityStack<Element:Comparable> {
         if count > maxLength {
             removeLast()
         }
-        if middleBanlance == 2 {
+        if middleBanlance >= 2 {
             middleBanlance = 0
             middleNode = middleNode.next
         }
-        if middleBanlance == -2 {
+        if middleBanlance <= -2 {
             middleBanlance = 0
             middleNode = middleNode.previous
         }
@@ -105,18 +107,31 @@ class PriorityStack<Element:Comparable> {
     fileprivate weak var currentIteratorItem:Node?
 }
 
-extension PriorityStack:Sequence,IteratorProtocol {
-    func next() -> PriorityStack.Element? {
-        let a = currentIteratorItem
-        currentIteratorItem = currentIteratorItem?.next
-        return a?.value
+extension PriorityStack_LinkedListBackend:Sequence {
+    __consuming func makeIterator() -> PriorityStack_LinkedListBackend<Element>.PriorityStackIterator<Element> {
+        return PriorityStackIterator(firstNode: headNode)
     }
-    internal func makeIterator() -> PriorityStack.Iterator {
-        currentIteratorItem = headNode
-        return self
+    
+    
+    typealias Iterator = PriorityStackIterator<Element>
+    
+    class PriorityStackIterator<T>:IteratorProtocol {
+        typealias Element = T
+        fileprivate var currentNode:LinkedListNode<Element>?
+        
+        func next() -> T? {
+            let a = currentNode
+            currentNode = currentNode?.next
+            return a?.value
+        }
+        fileprivate init(firstNode:LinkedListNode<Element>?) {
+            currentNode = firstNode
+        }
+        
     }
+
 }
-extension PriorityStack {
+extension PriorityStack_LinkedListBackend {
     fileprivate func insertAfter(_ node:Node, withElement element:Element) {
         let newNode = Node(value: element)
         if node.next == nil {endNode = newNode}

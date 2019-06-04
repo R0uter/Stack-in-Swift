@@ -6,13 +6,15 @@ So I try to implement that for my self.
 
 There is three version of Stack: 
 
-`StackG` is Generic version Stack.It uses struct;
+`Stack` is Generic version Stack.It uses struct;
 
-`Stack` is class version Stack,It seems more like common Stack,which needs to check the type of value before you use it.
+`PriorityStack_ArrayBackend` is class version Stack that auto sort elements as DESC, this stack uses Swift Array as storage.
 
-`PriorityStack` is struct version Stack that auto sort elements as DESC
+`PriorityStack_LinkedListBackend` is calss version Stack that automaticly sort elements as DESC, this stack uses a linked-list as storage.
 
 They are all implemented with `Sequence`, so you can use `.map`, `.flat`, `for-in` and so on. :)
+
+However linked-list and array has different performence on different circumstances, hard to say which is better.
 
 ### Demo
 

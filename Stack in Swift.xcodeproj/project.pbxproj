@@ -10,7 +10,7 @@
 		E96076DC1E52136E000A83FF /* PriorityStack_ArrayBackEnd.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96076DB1E52136E000A83FF /* PriorityStack_ArrayBackEnd.swift */; };
 		E98209761C54CACD0060DDCB /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98209751C54CACD0060DDCB /* main.swift */; };
 		E982097E1C54CC1F0060DDCB /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E982097D1C54CC1F0060DDCB /* Stack.swift */; };
-		E991B84122A4FC0100108B14 /* PriorityStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E991B84022A4FC0100108B14 /* PriorityStack.swift */; };
+		E991B84122A4FC0100108B14 /* PriorityStack_LinkedListBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = E991B84022A4FC0100108B14 /* PriorityStack_LinkedListBackend.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,7 +31,7 @@
 		E98209751C54CACD0060DDCB /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		E982097D1C54CC1F0060DDCB /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
 		E98209811C54D12B0060DDCB /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		E991B84022A4FC0100108B14 /* PriorityStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriorityStack.swift; sourceTree = "<group>"; };
+		E991B84022A4FC0100108B14 /* PriorityStack_LinkedListBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriorityStack_LinkedListBackend.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,7 +68,7 @@
 				E98209751C54CACD0060DDCB /* main.swift */,
 				E982097D1C54CC1F0060DDCB /* Stack.swift */,
 				E96076DB1E52136E000A83FF /* PriorityStack_ArrayBackEnd.swift */,
-				E991B84022A4FC0100108B14 /* PriorityStack.swift */,
+				E991B84022A4FC0100108B14 /* PriorityStack_LinkedListBackend.swift */,
 			);
 			path = "Stack in Swift";
 			sourceTree = "<group>";
@@ -135,7 +135,7 @@
 				E982097E1C54CC1F0060DDCB /* Stack.swift in Sources */,
 				E96076DC1E52136E000A83FF /* PriorityStack_ArrayBackEnd.swift in Sources */,
 				E98209761C54CACD0060DDCB /* main.swift in Sources */,
-				E991B84122A4FC0100108B14 /* PriorityStack.swift in Sources */,
+				E991B84122A4FC0100108B14 /* PriorityStack_LinkedListBackend.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,6 +248,7 @@
 		E982097A1C54CACD0060DDCB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_USE_OPTIMIZATION_PROFILE = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -256,6 +257,7 @@
 		E982097B1C54CACD0060DDCB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_USE_OPTIMIZATION_PROFILE = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
