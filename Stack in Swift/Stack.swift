@@ -1,5 +1,5 @@
 //
-//  Stack.swift
+//  StackG.swift
 //  Stack in Swift
 //
 //  Created by R0uter on 16/1/24.
@@ -8,18 +8,18 @@
 
 import Foundation
 
-class Stack {
-    fileprivate var items:[Any] = []
-    func push(_ newElement:Any) {
+struct Stack<Element> {
+    fileprivate var items:[Element] = []
+    mutating func push(_ newElement:Element) {
         items.append(newElement)
     }
-    func pop() ->Any? {
+    mutating func pop() ->Element? {
         return items.removeLast()
     }
     func empty() -> Bool {
         return items.isEmpty
     }
-    func peek() ->Any? {
+    func peek() ->Element? {
         return items.last
     }
     var count:Int {
@@ -27,7 +27,7 @@ class Stack {
     }
 }
 extension Stack:Sequence {
-    typealias Iterator = IndexingIterator<Array<Any>>
+    typealias Iterator = IndexingIterator<Array<Element>>
     func makeIterator() -> Stack.Iterator {
         return items.makeIterator()
     }

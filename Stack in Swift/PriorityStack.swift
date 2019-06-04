@@ -1,74 +1,142 @@
 //
-//  PriorityStack.swift
+//  PriorityQueue.swift
 //  Stack in Swift
 //
-//  Created by R0uter on 2017/2/14.
-//  Copyright © 2017年 R0uter. All rights reserved.
+//  Created by R0uter on 6/3/19.
+//  Copyright © 2019 R0uter. All rights reserved.
 //
 
 import Foundation
-//Element must comparable
+fileprivate class LinkedListNode<T> {
+    var value: T
+    var next: LinkedListNode?
+    weak var previous: LinkedListNode?
+    
+    init(value: T) {
+        self.value = value
+    }
+}
 
-struct PriorityStack<Element:Comparable> {
-    fileprivate var items:[Element] = []
+class PriorityStack<Element:Comparable> {
+    fileprivate typealias Node = LinkedListNode<Element>
+    
     let maxLength:Int
     
+    private(set) var count = 0
     init(Length length:Int) {
         maxLength = length
     }
-    mutating func push(_ newElement:Element) {
-        if maxLength == count && newElement < items.last! {
+    
+    fileprivate var headNode:Node!
+    fileprivate var middleNode:Node!
+    fileprivate var endNode:Node!
+    
+    var middleBanlance = 0 // left - right +
+    
+    func push(_ newElement:Element) {
+        guard !isEmpty else {
+            let newNode = Node(value: newElement)
+            headNode = newNode
+            middleNode = newNode
+            endNode = newNode
+            count = 1
             return
         }
-        if items.isEmpty {items.append(newElement);return}
-        var middleIndex = Int(count/2)
-        if newElement > items[middleIndex] {
-            while middleIndex >= 0 {
-                
-                if newElement > items[middleIndex] {
-                    if middleIndex == 0 {items.insert(newElement, at: 0);break}
-                    middleIndex -= 1
-                    continue
-                }
-                
-                items.insert(newElement, at: middleIndex + 1)
-                break
-            }
-        } else {
-            while middleIndex < count {
-                
-                if newElement < items[middleIndex] {
-                    if middleIndex == count - 1 {items.append(newElement);break}
-                    middleIndex += 1
-                    continue
-                }
-                items.insert(newElement, at: middleIndex)
-                break
-            }
-        }
-        if count > maxLength {items.removeLast()}
         
+        if maxLength == count && newElement < endNode!.value {
+            return
+        }
+        
+        if newElement > middleNode.value {
+            var node = middleNode.previous
+            while node != nil {
+                guard newElement <= node!.value else {
+                    node = node!.previous
+                    continue
+                }
+                insertAfter(node!, withElement:newElement)
+                break
+            }
+            if node == nil {
+                insertBefore(headNode, withElement: newElement)
+            }
+            middleBanlance -= 1
+            
+        } else {
+            var node = middleNode.next
+            while node != nil {
+                guard newElement > node!.value else {
+                    node = node!.next
+                    continue
+                }
+                insertBefore(node!, withElement: newElement)
+                break
+            }
+            if node == nil {
+                insertAfter(endNode, withElement: newElement)
+            }
+            middleBanlance += 1
+        }
+        count += 1
+        if count > maxLength {
+            removeLast()
+        }
+        if middleBanlance == 2 {
+            middleBanlance = 0
+            middleNode = middleNode.next
+        }
+        if middleBanlance == -2 {
+            middleBanlance = 0
+            middleNode = middleNode.previous
+        }
     }
     
-    mutating func pop()->Element? {
-        guard count > 0 else {return nil}
-        return items.removeFirst()
+    func pop()->Element? {
+        guard count > 0, let node = headNode else {return nil}
+        headNode = headNode.next
+        count -= 1
+        return node.value
     }
-    func empty() -> Bool {
-        return items.isEmpty
-    }
+    var isEmpty:Bool {return count == 0}
     func peek() ->Element? {
-        return items.last
-    }
-    var count:Int {
-        return items.count
+        return headNode?.value
     }
     
+    fileprivate weak var currentIteratorItem:Node?
 }
 
-extension PriorityStack:Sequence {
-    typealias Iterator = IndexingIterator<Array<Element>>
-    func makeIterator() -> PriorityStack.Iterator {
-        return items.makeIterator()
+extension PriorityStack:Sequence,IteratorProtocol {
+    func next() -> PriorityStack.Element? {
+        let a = currentIteratorItem
+        currentIteratorItem = currentIteratorItem?.next
+        return a?.value
+    }
+    internal func makeIterator() -> PriorityStack.Iterator {
+        currentIteratorItem = headNode
+        return self
+    }
+}
+extension PriorityStack {
+    fileprivate func insertAfter(_ node:Node, withElement element:Element) {
+        let newNode = Node(value: element)
+        if node.next == nil {endNode = newNode}
+        node.next?.previous = newNode
+        newNode.previous = node
+        newNode.next = node.next
+        node.next = newNode
+    }
+    fileprivate func insertBefore(_ node:Node, withElement element:Element) {
+        let newNode = Node(value: element)
+        if node.previous == nil {headNode = newNode}
+        node.previous?.next = newNode
+        newNode.previous = node.previous
+        newNode.next = node
+        node.previous = newNode
+    }
+    fileprivate func removeLast() {
+        endNode = endNode.previous
+        endNode.next = nil
+        count -= 1
+        middleBanlance -= 1
     }
 }

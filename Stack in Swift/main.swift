@@ -8,54 +8,21 @@
 
 import Foundation
 
-class SomeClass {
-    var classNumber = 0
-    init (number:Int) {
-        classNumber = number
-    }
+
+var myP = PriorityStack_ArrayBackEnd<Int>(Length: 50)
+
+var date = Date()
+for _ in 0...100000 {
+    let i = Int.random(in: 0...999)
+    myP.push(i)
 }
+print(Date().timeIntervalSince(date)*1000,"ms")
 
+var p = PriorityStack<Int>(Length: 50)
 
-var GVersionStack = StackG<SomeClass>()
-let stack = Stack()
-
-let a = SomeClass(number: 1)
-let b = SomeClass(number: 2)
-let c = SomeClass(number: 3)
-
-GVersionStack.push(a)
-GVersionStack.push(c)
-GVersionStack.push(b)
-print(GVersionStack.peek()!.classNumber)
-
-stack.push(1)
-stack.push(a)
-stack.push("abcd")
-for item in stack {
-    let tmp = stack.peek() as? SomeClass
-    if let a = tmp {
-        print(tmp!.classNumber)
-    }
+date = Date()
+for _ in 0...100000 {
+    let i = Int.random(in: 0...999)
+    p.push(i)
 }
-print(stack.count)
-_ = stack.pop()
-print(stack.count)
-print("=========")
-var pStack:PriorityStack<Int> = PriorityStack(Length: 5)
-pStack.push(1)
-pStack.push(5)
-pStack.push(2)
-pStack.push(8)
-pStack.push(100)
-pStack.push(999999)
-pStack.push(0)
-print(pStack.maxLength)
-print("---")
-for item in pStack {
-    print(item)
-}
-let list:[Int] = pStack.map{return $0}
-print(list)
-
-
-    
+print(Date().timeIntervalSince(date)*1000,"ms")
