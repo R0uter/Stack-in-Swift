@@ -9,20 +9,19 @@
 import Foundation
 //Element must comparable
 
-class PriorityStack_ArrayBackEnd<Element:Comparable> {
-    fileprivate var items:[Element] = []
-    let maxLength:Int
+class PriorityStack_ArrayBackEnd<Element: Comparable> {
+    fileprivate var items: [Element] = []
+    let maxLength: Int
     
-    init(Length length:Int) {
+    init(Length length: Int) {
         maxLength = length
-        items.reserveCapacity(length+5)
+        items.reserveCapacity(length + 5)
     }
+    
     var count = 0
     
-    func push(_ newElement:Element) {
-        
-        
-        if maxLength == count && newElement < items.last! {
+    func push(_ newElement: Element) {
+        if maxLength == count, newElement < items.last! {
             return
         }
         
@@ -30,15 +29,13 @@ class PriorityStack_ArrayBackEnd<Element:Comparable> {
             items.append(newElement)
             count += 1
             return
-            
         }
         
-        var middleIndex = Int(count/2)
+        var middleIndex = Int(count / 2)
         if newElement > items[middleIndex] {
             while middleIndex >= 0 {
-                
                 if newElement > items[middleIndex] {
-                    if middleIndex == 0 {items.insert(newElement, at: 0);break}
+                    if middleIndex == 0 { items.insert(newElement, at: 0); break }
                     middleIndex -= 1
                     continue
                 }
@@ -48,9 +45,8 @@ class PriorityStack_ArrayBackEnd<Element:Comparable> {
             }
         } else {
             while middleIndex < count {
-                
                 if newElement < items[middleIndex] {
-                    if middleIndex == count - 1 {items.append(newElement);break}
+                    if middleIndex == count - 1 { items.append(newElement); break }
                     middleIndex += 1
                     continue
                 }
@@ -59,26 +55,26 @@ class PriorityStack_ArrayBackEnd<Element:Comparable> {
             }
         }
         count += 1
-        if count > maxLength {items.removeLast();count -= 1}
-        
+        if count > maxLength { items.removeLast(); count -= 1 }
     }
     
-    func pop()->Element? {
-        guard count > 0 else {return nil}
+    func pop() -> Element? {
+        guard count > 0 else { return nil }
         count -= 1
         return items.removeFirst()
     }
-    var isEmpty:Bool {
+    
+    var isEmpty: Bool {
         return count == 0
     }
-    func peek() ->Element? {
+    
+    func peek() -> Element? {
         return items.first
     }
-    
 }
 
-extension PriorityStack_ArrayBackEnd:Sequence {
-    typealias Iterator = IndexingIterator<Array<Element>>
+extension PriorityStack_ArrayBackEnd: Sequence {
+    typealias Iterator = IndexingIterator<[Element]>
     func makeIterator() -> PriorityStack_ArrayBackEnd.Iterator {
         return items.makeIterator()
     }

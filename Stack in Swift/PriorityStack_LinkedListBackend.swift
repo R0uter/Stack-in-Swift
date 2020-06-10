@@ -7,7 +7,7 @@
 //
 
 import Foundation
-fileprivate class LinkedListNode<T> {
+private class LinkedListNode<T> {
     var value: T
     var next: LinkedListNode?
     weak var previous: LinkedListNode?
@@ -17,26 +17,24 @@ fileprivate class LinkedListNode<T> {
     }
 }
 
-class PriorityStack_LinkedListBackend<Element:Comparable> {
+class PriorityStack_LinkedListBackend<Element: Comparable> {
     fileprivate typealias Node = LinkedListNode<Element>
     
-    let maxLength:Int
+    let maxLength: Int
     
     private(set) var count = 0
-    init(Length length:Int) {
+    init(Length length: Int) {
         maxLength = length
     }
     
-    fileprivate var headNode:Node!
-    fileprivate var middleNode:Node!
-    fileprivate var endNode:Node!
+    fileprivate var headNode: Node!
+    fileprivate weak var middleNode: Node!
+    fileprivate var endNode: Node!
     
-    var middleBanlance = 0 // left - right +
+    var middleBalance = 0 // left - right +
     
-    func push(_ newElement:Element) {
-        
-        
-        if maxLength == count && newElement < endNode!.value {
+    func push(_ newElement: Element) {
+        if maxLength == count, newElement < endNode!.value {
             return
         }
         
@@ -56,13 +54,13 @@ class PriorityStack_LinkedListBackend<Element:Comparable> {
                     node = node!.previous
                     continue
                 }
-                insertAfter(node!, withElement:newElement)
+                insertAfter(node!, withElement: newElement)
                 break
             }
             if node == nil {
                 insertBefore(headNode, withElement: newElement)
             }
-            middleBanlance -= 1
+            middleBalance -= 1
             
         } else {
             var node = middleNode.next
@@ -77,81 +75,90 @@ class PriorityStack_LinkedListBackend<Element:Comparable> {
             if node == nil {
                 insertAfter(endNode, withElement: newElement)
             }
-            middleBanlance += 1
+            middleBalance += 1
         }
         count += 1
         if count > maxLength {
             removeLast()
         }
-        if middleBanlance >= 2 {
-            middleBanlance = 0
-            middleNode = middleNode.next
-        }
-        if middleBanlance <= -2 {
-            middleBanlance = 0
-            middleNode = middleNode.previous
-        }
+        balance()
     }
     
-    func pop()->Element? {
-        guard count > 0, let node = headNode else {return nil}
+    func pop() -> Element? {
+        guard count > 0, let node = headNode else { return nil }
         headNode = headNode.next
         count -= 1
+        middleBalance += 1
+        balance()
         return node.value
     }
-    var isEmpty:Bool {return count == 0}
-    func peek() ->Element? {
+    
+    var isEmpty: Bool { return count == 0 }
+    func peek() -> Element? {
         return headNode?.value
     }
     
-    fileprivate weak var currentIteratorItem:Node?
+    fileprivate weak var currentIteratorItem: Node?
 }
 
-extension PriorityStack_LinkedListBackend:Sequence {
+extension PriorityStack_LinkedListBackend: Sequence {
     __consuming func makeIterator() -> PriorityStack_LinkedListBackend<Element>.PriorityStackIterator<Element> {
         return PriorityStackIterator(firstNode: headNode)
     }
     
-    
     typealias Iterator = PriorityStackIterator<Element>
     
-    class PriorityStackIterator<T>:IteratorProtocol {
+    class PriorityStackIterator<T>: IteratorProtocol {
         typealias Element = T
-        fileprivate var currentNode:LinkedListNode<Element>?
+        fileprivate var currentNode: LinkedListNode<Element>?
         
         func next() -> T? {
             let a = currentNode
             currentNode = currentNode?.next
             return a?.value
         }
-        fileprivate init(firstNode:LinkedListNode<Element>?) {
+        
+        fileprivate init(firstNode: LinkedListNode<Element>?) {
             currentNode = firstNode
         }
-        
     }
-
 }
+
 extension PriorityStack_LinkedListBackend {
-    fileprivate func insertAfter(_ node:Node, withElement element:Element) {
+    fileprivate func insertAfter(_ node: Node, withElement element: Element) {
         let newNode = Node(value: element)
-        if node.next == nil {endNode = newNode}
+        if node.next == nil { endNode = newNode }
         node.next?.previous = newNode
         newNode.previous = node
         newNode.next = node.next
         node.next = newNode
     }
-    fileprivate func insertBefore(_ node:Node, withElement element:Element) {
+    
+    fileprivate func insertBefore(_ node: Node, withElement element: Element) {
         let newNode = Node(value: element)
-        if node.previous == nil {headNode = newNode}
+        if node.previous == nil { headNode = newNode }
         node.previous?.next = newNode
         newNode.previous = node.previous
         newNode.next = node
         node.previous = newNode
     }
+    
     fileprivate func removeLast() {
         endNode = endNode.previous
         endNode.next = nil
         count -= 1
-        middleBanlance -= 1
+        middleBalance -= 1
+        balance()
+    }
+    
+    fileprivate func balance() {
+        if middleBalance >= 2, middleNode.next != nil {
+            middleBalance = 0
+            middleNode = middleNode.next
+        }
+        if middleBalance <= -2, middleNode.previous != nil {
+            middleBalance = 0
+            middleNode = middleNode.previous
+        }
     }
 }

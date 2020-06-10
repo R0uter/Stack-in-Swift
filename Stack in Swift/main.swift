@@ -8,21 +8,22 @@
 
 import Foundation
 
-
 var myP = PriorityStack_ArrayBackEnd<Int>(Length: 50)
 
 var date = Date()
-for _ in 0...100000 {
+for _ in 0...100 {
     let i = Int.random(in: 0...999)
     myP.push(i)
 }
-print(Date().timeIntervalSince(date)*1000,"ms")
+
+print(Date().timeIntervalSince(date) * 1000, "ms")
 
 var p = PriorityStack_LinkedListBackend<Int>(Length: 50)
 
 date = Date()
-for _ in 0...100000 {
+for _ in 0...100 {
     let i = Int.random(in: 0...999)
     p.push(i)
 }
-print(Date().timeIntervalSince(date)*1000,"ms")
+
+print(Date().timeIntervalSince(date) * 1000, "ms")

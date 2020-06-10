@@ -9,25 +9,30 @@
 import Foundation
 
 struct Stack<Element> {
-    fileprivate var items:[Element] = []
-    mutating func push(_ newElement:Element) {
+    fileprivate var items: [Element] = []
+    mutating func push(_ newElement: Element) {
         items.append(newElement)
     }
-    mutating func pop() ->Element? {
+
+    mutating func pop() -> Element? {
         return items.removeLast()
     }
+
     func empty() -> Bool {
         return items.isEmpty
     }
-    func peek() ->Element? {
+
+    func peek() -> Element? {
         return items.last
     }
-    var count:Int {
+
+    var count: Int {
         return items.count
     }
 }
-extension Stack:Sequence {
-    typealias Iterator = IndexingIterator<Array<Element>>
+
+extension Stack: Sequence {
+    typealias Iterator = IndexingIterator<[Element]>
     func makeIterator() -> Stack.Iterator {
         return items.makeIterator()
     }
